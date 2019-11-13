@@ -25,7 +25,7 @@ double f(double c)
 	
 int main()
 {
-	printf("BISECTION \n"); 
+	printf("BISECTION \n"); //printing the bisection
 	printf("enter the degree of polynomial");
 	scanf("%d",&deg);
 
