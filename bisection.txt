@@ -1,0 +1,79 @@
+#include<stdio.h>
+#include<stdlib.h>
+int coff[20];
+int i,j,k,deg;
+double a,b,mul=1,sum,p,p1,f1,f2,f3;
+int max_iter=15,tol=10^-5,iter=0;
+
+double f(double c)
+	{
+	int m=deg,s;
+	sum=0;
+	for(j=m;j>=0;j--)
+	{
+		for(k=j;k>0;k--)
+		{
+		mul=mul*c;
+		}
+		s=coff[j];
+		sum=sum+s*mul;
+		mul=1.0;
+	}
+	
+	return sum; 
+	}	 	 	 	 
+	
+int main()
+{
+	printf("BISECTION \n"); 
+	printf("enter the degree of polynomial");
+	scanf("%d",&deg);
+
+	printf("enter polynomial coffecients with sign \n");
+	for(i=deg;i>=0;i--)
+		{
+		printf("enter coffecient for x^ %d",i);
+		scanf("%d",&coff[i]);
+		}
+	printf("enter the intervals a and b");
+	scanf("%lf %lf",&a , &b);
+	p=(a+b)/2;
+	
+	p1=f(p);
+	while(iter<max_iter && abs(p1)>tol)
+		{
+			
+			f1=f(a);
+			f2=f(p);
+			f3=f(b);
+		 	if((f1*f2)<0)
+			{	
+				b=p;
+				
+			}
+			else if((f2*f3)<0)
+			{
+				a=p;
+				
+			}
+			else if((f1*f2)>0 &&(f2*f3)>0)
+			{
+			printf(" root does not exists");
+			break;
+			}
+			iter++;
+			p=(a+b)/2;
+		    printf("new inter a= %lf , b= %lf \n",a,b); 			
+		}
+		
+	
+		
+  	printf("the root is  %lf \n",p);
+	
+}
+			
+	
+		
+	
+
+
